@@ -38,6 +38,9 @@
             this.FillTextBox = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.BubbleSortButton = new System.Windows.Forms.Button();
+            this.TimeLbl = new System.Windows.Forms.Label();
+            this.CompareLbl = new System.Windows.Forms.Label();
+            this.SwopLbl = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -134,11 +137,41 @@
             this.BubbleSortButton.UseVisualStyleBackColor = true;
             this.BubbleSortButton.Click += new System.EventHandler(this.BubbleSortButton_Click);
             // 
+            // TimeLbl
+            // 
+            this.TimeLbl.AutoSize = true;
+            this.TimeLbl.Location = new System.Drawing.Point(12, 164);
+            this.TimeLbl.Name = "TimeLbl";
+            this.TimeLbl.Size = new System.Drawing.Size(46, 13);
+            this.TimeLbl.TabIndex = 6;
+            this.TimeLbl.Text = "Время: ";
+            // 
+            // CompareLbl
+            // 
+            this.CompareLbl.AutoSize = true;
+            this.CompareLbl.Location = new System.Drawing.Point(12, 193);
+            this.CompareLbl.Name = "CompareLbl";
+            this.CompareLbl.Size = new System.Drawing.Size(129, 13);
+            this.CompareLbl.TabIndex = 7;
+            this.CompareLbl.Text = "Количество сравнений: ";
+            // 
+            // SwopLbl
+            // 
+            this.SwopLbl.AutoSize = true;
+            this.SwopLbl.Location = new System.Drawing.Point(12, 220);
+            this.SwopLbl.Name = "SwopLbl";
+            this.SwopLbl.Size = new System.Drawing.Size(119, 13);
+            this.SwopLbl.TabIndex = 8;
+            this.SwopLbl.Text = "Количество обменов: ";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.SwopLbl);
+            this.Controls.Add(this.CompareLbl);
+            this.Controls.Add(this.TimeLbl);
             this.Controls.Add(this.BubbleSortButton);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
@@ -150,6 +183,7 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -165,6 +199,9 @@
         private System.Windows.Forms.TextBox FillTextBox;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button BubbleSortButton;
+        private System.Windows.Forms.Label TimeLbl;
+        private System.Windows.Forms.Label CompareLbl;
+        private System.Windows.Forms.Label SwopLbl;
     }
 }
 
