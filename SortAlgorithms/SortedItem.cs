@@ -13,10 +13,11 @@ namespace SortAlgorithms
         public VerticalProgressBar.VerticalProgressBar ProgressBar { get;private set; }
         public Label Label { get; private set; }
         public int Value { get; private set; }
-
+        public int Number { get; set; }
         public SortedItem(int value, int number)
         {
             Value = value;
+            Number = number;
             ProgressBar = new VerticalProgressBar.VerticalProgressBar();
             Label = new Label();
             var x = number * 20;
@@ -44,10 +45,14 @@ namespace SortAlgorithms
             Label.TabIndex = number;
             Label.Text = Value.ToString();
         }
-        public void SetValue(int value)
+        public void SetPosition(int number)
         {
-            ProgressBar.Value = value;
-            Label.Text = value.ToString();
+            Number = number;
+            var x = number * 20;
+            ProgressBar.Location = new Point(x, 3);
+            ProgressBar.Name = "ProgressBar" + number;
+            Label.Location = new Point(x, 102);
+            Label.Name = "label" + number;
         }
 
         public void SetColor(Color color)
@@ -64,6 +69,10 @@ namespace SortAlgorithms
             {
                 throw new ArgumentException($"obj is not {nameof(SortedItem)}");
             }
+        }
+        public override string ToString()
+        {
+            return Value.ToString();
         }
     }
 }

@@ -79,8 +79,13 @@ namespace SortAlgorithms
 
         private void Bubble_SwopEvent(object sender, Tuple<SortedItem, SortedItem> e)
         {
-            var temp = e.Item1.Value;
-            e.Item1.SetValue(e.Item2.Value);
+            var temp = e.Item1.Number;
+            e.Item1.SetPosition(e.Item2.Number);
+            e.Item2.SetPosition(temp);
+            //var temp = e.Item1.Value;
+            //e.Item1.Swop(e.Item2.Value);
+           // e.Item2.Swop(temp);
+
             panel3.Refresh();
         }
 
