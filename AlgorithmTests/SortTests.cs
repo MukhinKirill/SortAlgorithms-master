@@ -18,14 +18,14 @@ namespace Algorithm.Tests
         public void Init()
         {
             items.Clear();
-            for (int i = 0; i < 10000; i++)
+            for (int i = 0; i < 1000000; i++)
             {
                 items.Add(rnd.Next(0, 100));
             }
             sorted.Clear();
             sorted.AddRange(items.OrderBy(x => x).ToArray());
         }
-        [TestMethod()]//это тестовый метод и отображается в обозревателе тестов
+        //[TestMethod()]//это тестовый метод и отображается в обозревателе тестов
         public void BubbleTest()
         {
             // arrange
@@ -40,7 +40,7 @@ namespace Algorithm.Tests
                 Assert.AreEqual(sorted[i], bubble.Items[i]);
             }
         }
-        [TestMethod()]
+       // [TestMethod()]
         public void CoctailTest()
         {
             // arrange
@@ -55,7 +55,7 @@ namespace Algorithm.Tests
                 Assert.AreEqual(sorted[i], coctail.Items[i]);
             }
         }
-        [TestMethod()]
+        //[TestMethod()]
         public void InsertTest()
         {
             // arrange
@@ -113,6 +113,21 @@ namespace Algorithm.Tests
             for (int i = 0; i < items.Count; i++)
             {
                 Assert.AreEqual(sorted[i], tree.Items[i]);
+            }
+        }
+        [TestMethod()]
+        public void HeapTest()
+        {
+            // arrange
+            var heap = new HeapSort<int>();
+            heap.Items.AddRange(items);
+            // act
+            heap.Sort();
+
+            // assert
+            for (int i = 0; i < items.Count; i++)
+            {
+                Assert.AreEqual(sorted[i], heap.Items[i]);
             }
         }
     }
