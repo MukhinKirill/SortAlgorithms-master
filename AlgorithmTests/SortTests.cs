@@ -18,7 +18,7 @@ namespace Algorithm.Tests
         public void Init()
         {
             items.Clear();
-            for (int i = 0; i < 10001; i++)
+            for (int i = 0; i < 10000; i++)
             {
                 items.Add(rnd.Next(0, 100));
             }
@@ -98,6 +98,21 @@ namespace Algorithm.Tests
             for (int i = 0; i < items.Count; i++)
             {
                 Assert.AreEqual(sorted[i], bases.Items[i]);
+            }
+        }
+        [TestMethod()]
+        public void TreeTest()
+        {
+            // arrange
+            var tree = new TreeSort<int>();
+            tree.Items.AddRange(items);
+            // act
+            tree.Sort();
+
+            // assert
+            for (int i = 0; i < items.Count; i++)
+            {
+                Assert.AreEqual(sorted[i], tree.Items[i]);
             }
         }
     }
