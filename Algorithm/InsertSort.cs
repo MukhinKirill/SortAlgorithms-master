@@ -6,8 +6,17 @@ using System.Threading.Tasks;
 
 namespace Algorithm
 {
+
     public class InsertSort<T>:AlgorithmBase<T> where T: IComparable
     {
+        public InsertSort()
+        {
+
+        }
+        public InsertSort(IEnumerable<T> items) : base(items)
+        {
+
+        }
         protected override void MakeSort()
         {
             for (int i = 1; i < Items.Count; i++)

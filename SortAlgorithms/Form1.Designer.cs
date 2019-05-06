@@ -41,6 +41,9 @@
             this.TimeLbl = new System.Windows.Forms.Label();
             this.CompareLbl = new System.Windows.Forms.Label();
             this.SwopLbl = new System.Windows.Forms.Label();
+            this.CoctailSortButton = new System.Windows.Forms.Button();
+            this.InsertSortButton = new System.Windows.Forms.Button();
+            this.ShellSortButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -164,11 +167,44 @@
             this.SwopLbl.TabIndex = 8;
             this.SwopLbl.Text = "Количество обменов: ";
             // 
+            // CoctailSortButton
+            // 
+            this.CoctailSortButton.Location = new System.Drawing.Point(93, 134);
+            this.CoctailSortButton.Name = "CoctailSortButton";
+            this.CoctailSortButton.Size = new System.Drawing.Size(75, 23);
+            this.CoctailSortButton.TabIndex = 9;
+            this.CoctailSortButton.Text = "CoctailSort";
+            this.CoctailSortButton.UseVisualStyleBackColor = true;
+            this.CoctailSortButton.Click += new System.EventHandler(this.CoctailSortButton_Click);
+            // 
+            // InsertSortButton
+            // 
+            this.InsertSortButton.Location = new System.Drawing.Point(175, 133);
+            this.InsertSortButton.Name = "InsertSortButton";
+            this.InsertSortButton.Size = new System.Drawing.Size(75, 23);
+            this.InsertSortButton.TabIndex = 10;
+            this.InsertSortButton.Text = "InsertSort";
+            this.InsertSortButton.UseVisualStyleBackColor = true;
+            this.InsertSortButton.Click += new System.EventHandler(this.InsertSortButton_Click);
+            // 
+            // ShellSortButton
+            // 
+            this.ShellSortButton.Location = new System.Drawing.Point(257, 133);
+            this.ShellSortButton.Name = "ShellSortButton";
+            this.ShellSortButton.Size = new System.Drawing.Size(75, 23);
+            this.ShellSortButton.TabIndex = 11;
+            this.ShellSortButton.Text = "ShellSort";
+            this.ShellSortButton.UseVisualStyleBackColor = true;
+            this.ShellSortButton.Click += new System.EventHandler(this.ShellSortButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.ShellSortButton);
+            this.Controls.Add(this.InsertSortButton);
+            this.Controls.Add(this.CoctailSortButton);
             this.Controls.Add(this.SwopLbl);
             this.Controls.Add(this.CompareLbl);
             this.Controls.Add(this.TimeLbl);
@@ -202,6 +238,9 @@
         private System.Windows.Forms.Label TimeLbl;
         private System.Windows.Forms.Label CompareLbl;
         private System.Windows.Forms.Label SwopLbl;
+        private System.Windows.Forms.Button CoctailSortButton;
+        private System.Windows.Forms.Button InsertSortButton;
+        private System.Windows.Forms.Button ShellSortButton;
     }
 }
 

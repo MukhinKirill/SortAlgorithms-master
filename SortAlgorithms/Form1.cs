@@ -87,19 +87,8 @@ namespace SortAlgorithms
             items.Clear();
         }
 
-        private void BubbleSortButton_Click(object sender, EventArgs e)
-        {
-            RefreshItems();
-            var bubble = new BubbleSort<SortedItem>(items);
-            bubble.CompareEvent += Bubble_CompareEvent;
-            bubble.SwopEvent += Bubble_SwopEvent;
-            var time = bubble.Sort();
-            TimeLbl.Text = "Время: " + time.Seconds;
-            SwopLbl.Text = "Количество обменов: " + bubble.SwopCount;
-            CompareLbl.Text = "Количество сравнений: " + bubble.ComparisonCount;
-        }
 
-        private void Bubble_SwopEvent(object sender, Tuple<SortedItem, SortedItem> e)
+        private void Algorithm_SwopEvent(object sender, Tuple<SortedItem, SortedItem> e)
         {
             var temp = e.Item1.Number;
             e.Item1.SetPosition(e.Item2.Number);
@@ -110,12 +99,56 @@ namespace SortAlgorithms
 
             panel3.Refresh();
         }
+        private void BtnClick(AlgorithmBase<SortedItem> algorithm)
+        {
+            RefreshItems();
+            algorithm.CompareEvent += Algorithm_CompareEvent;
+            algorithm.SwopEvent += Algorithm_SwopEvent;
+            var time = algorithm.Sort();
 
-        private void Bubble_CompareEvent(object sender, Tuple<SortedItem, SortedItem> e)
+            TimeLbl.Text = "Время: " + time.Seconds;
+            SwopLbl.Text = "Количество обменов: " + algorithm.SwopCount;
+            CompareLbl.Text = "Количество сравнений: " + algorithm.ComparisonCount;
+        }
+
+        private void Algorithm_CompareEvent(object sender, Tuple<SortedItem, SortedItem> e)
         {
             e.Item1.SetColor(Color.Red);
             e.Item2.SetColor(Color.Green);
             panel3.Refresh();
+
+            Thread.Sleep(50);
+            e.Item1.SetColor(Color.Blue);
+            e.Item2.SetColor(Color.Blue);
+            panel3.Refresh();
+        }
+        private void BubbleSortButton_Click(object sender, EventArgs e)
+        {
+            RefreshItems();
+            var bubble = new BubbleSort<SortedItem>(items);
+            BtnClick(bubble);
+        }
+
+        private void CoctailSortButton_Click(object sender, EventArgs e)
+        {
+            RefreshItems();
+            var coctail = new CocktailSort<SortedItem>(items);
+            BtnClick(coctail);
+        }
+
+
+        private void InsertSortButton_Click(object sender, EventArgs e)
+        {
+            RefreshItems();
+            var insert = new InsertSort<SortedItem>(items);
+            BtnClick(insert);
+        }
+
+        private void ShellSortButton_Click(object sender, EventArgs e)
+        {
+            RefreshItems();
+            var shell = new ShellSort<SortedItem>(items);
+            BtnClick(shell);
         }
     }
 }
