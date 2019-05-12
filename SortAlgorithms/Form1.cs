@@ -1,4 +1,5 @@
 ﻿using Algorithm;
+using Algorithm.DataStructure;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -90,25 +91,25 @@ namespace SortAlgorithms
 
         private void Algorithm_SwopEvent(object sender, Tuple<SortedItem, SortedItem> e)
         {
+
+            e.Item1.SetColor(Color.Aqua);
+            e.Item2.SetColor(Color.Brown);
+            panel3.Refresh();
+
+            Thread.Sleep(20);
+
             var temp = e.Item1.Number;
             e.Item1.SetPosition(e.Item2.Number);
             e.Item2.SetPosition(temp);
-            //var temp = e.Item1.Value;
-            //e.Item1.Swop(e.Item2.Value);
-           // e.Item2.Swop(temp);
-
             panel3.Refresh();
-        }
-        private void BtnClick(AlgorithmBase<SortedItem> algorithm)
-        {
-            RefreshItems();
-            algorithm.CompareEvent += Algorithm_CompareEvent;
-            algorithm.SwopEvent += Algorithm_SwopEvent;
-            var time = algorithm.Sort();
 
-            TimeLbl.Text = "Время: " + time.Seconds;
-            SwopLbl.Text = "Количество обменов: " + algorithm.SwopCount;
-            CompareLbl.Text = "Количество сравнений: " + algorithm.ComparisonCount;
+            Thread.Sleep(20);
+
+            e.Item1.SetColor(Color.Blue);
+            e.Item2.SetColor(Color.Blue);
+            panel3.Refresh();
+
+            Thread.Sleep(20);
         }
 
         private void Algorithm_CompareEvent(object sender, Tuple<SortedItem, SortedItem> e)
@@ -117,10 +118,30 @@ namespace SortAlgorithms
             e.Item2.SetColor(Color.Green);
             panel3.Refresh();
 
-            Thread.Sleep(100);
+            Thread.Sleep(20);
+
             e.Item1.SetColor(Color.Blue);
             e.Item2.SetColor(Color.Blue);
             panel3.Refresh();
+
+            Thread.Sleep(20);
+        }
+        private void BtnClick(AlgorithmBase<SortedItem> algorithm)
+        {
+            RefreshItems();
+            for (int i = 0; i < algorithm.Items.Count; i++)
+            {
+                algorithm.Items[i].SetPosition(i);
+            }
+            panel3.Refresh();
+
+            algorithm.CompareEvent += Algorithm_CompareEvent;
+            algorithm.SwopEvent += Algorithm_SwopEvent;
+            var time = algorithm.Sort();
+
+            TimeLbl.Text = "Время: " + time.Seconds;
+            SwopLbl.Text = "Количество обменов: " + algorithm.SwopCount;
+            CompareLbl.Text = "Количество сравнений: " + algorithm.ComparisonCount;
         }
         private void BubbleSortButton_Click(object sender, EventArgs e)
         {
@@ -131,7 +152,7 @@ namespace SortAlgorithms
 
         private void CoctailSortButton_Click(object sender, EventArgs e)
         {
-            RefreshItems();
+           
             var coctail = new CocktailSort<SortedItem>(items);
             BtnClick(coctail);
         }
@@ -139,23 +160,28 @@ namespace SortAlgorithms
 
         private void InsertSortButton_Click(object sender, EventArgs e)
         {
-            RefreshItems();
+            
             var insert = new InsertSort<SortedItem>(items);
             BtnClick(insert);
         }
 
         private void ShellSortButton_Click(object sender, EventArgs e)
         {
-            RefreshItems();
             var shell = new ShellSort<SortedItem>(items);
             BtnClick(shell);
         }
 
         private void SelectionSortBtn_Click(object sender, EventArgs e)
         {
-            RefreshItems();
             var selection = new SelectionSort<SortedItem>(items);
             BtnClick(selection);
+        }
+
+        private void HeapSortBtn_Click(object sender, EventArgs e)
+        {
+            var heap = new Heap<SortedItem>(items);
+
+            BtnClick(heap);
         }
     }
 }

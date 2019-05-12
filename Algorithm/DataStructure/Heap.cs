@@ -6,20 +6,20 @@ using System.Threading.Tasks;
 
 namespace Algorithm.DataStructure
 {
-    class Heap<T> where T:IComparable
+    public class Heap<T>:AlgorithmBase<T>
+        where T:IComparable
     {
-        private List<T> items = new List<T>();
-        public int Count => items.Count;
+        public int Count => Items.Count;
 
         public T Peek()
         {
             if (Count > 0)
             {
-                return items[0];
+                return Items[0];
             }
             else
             {
-                throw new ArgumentNullException(nameof(items), "Куча пуста");
+                throw new ArgumentNullException(nameof(Items), "Куча пуста");
             }
         }
 
@@ -27,7 +27,7 @@ namespace Algorithm.DataStructure
 
         public Heap(IEnumerable<T> items)
         {
-            this.items.AddRange(items);
+            Items.AddRange(items);
             for (int i = Count; i >= 0; i--)
             {
                 Sort(i);
@@ -37,46 +37,47 @@ namespace Algorithm.DataStructure
 
         public void Add(T item)
         {
-            items.Add(item);
+            Items.Add(item);
 
             var currentIndex = Count - 1;
             var parentIndex = GetParentIndex(currentIndex);
 
-            while (currentIndex > 0 && (items[parentIndex].CompareTo(items[currentIndex])) == -1)
+            while (currentIndex > 0 && Compare(Items[parentIndex], Items[currentIndex]) == -1)
             {
-                Swap(currentIndex, parentIndex);
+                Swop(currentIndex, parentIndex);
 
                 currentIndex = parentIndex;
                 parentIndex = GetParentIndex(currentIndex);
             }
         }
 
-        public T GetMax()
-        {
-            var result = items[0];
-            items[0] = items[Count - 1];
-            items.RemoveAt(Count - 1);
-            Sort(0);
-            return result;
-        }
+        //public T GetMax()
+        //{
+        //    var result = Items[0];
+        //    Items[0] = Items[Count - 1];
+        //    Items.RemoveAt(Count - 1);
+        //    Sort(0);
+        //    return result;
+        //}
 
-        private void Sort(int curentIndex)
+        private void Sort(int curentIndex, int maxLenght = -1)
         {
             int maxIndex = curentIndex;
             int leftIndex;
             int rightIndex;
 
-            while (curentIndex < Count)
+            maxLenght = maxLenght == -1 ? maxLenght = Count : maxLenght;
+            while (curentIndex < maxLenght)
             {
                 leftIndex = 2 * curentIndex + 1;
                 rightIndex = 2 * curentIndex + 2;
 
-                if (leftIndex < Count && items[leftIndex].CompareTo(items[maxIndex]) == -1)
+                if (leftIndex < maxLenght && Compare(Items[leftIndex], Items[maxIndex]) == 1)
                 {
                     maxIndex = leftIndex;
                 }
 
-                if (rightIndex < Count && items[rightIndex].CompareTo(items[maxIndex]) == -1)
+                if (rightIndex < maxLenght && Compare(Items[rightIndex], Items[maxIndex]) == 1)
                 {
                     maxIndex = rightIndex;
                 }
@@ -86,16 +87,9 @@ namespace Algorithm.DataStructure
                     break;
                 }
 
-                Swap(curentIndex, maxIndex);
+                Swop(curentIndex, maxIndex);
                 curentIndex = maxIndex;
             }
-        }
-
-        private void Swap(int currentIndex, int parentIndex)
-        {
-            var temp = items[currentIndex];
-            items[currentIndex] = items[parentIndex];
-            items[parentIndex] = temp;
         }
 
         private int GetParentIndex(int currentIndex)
@@ -103,14 +97,14 @@ namespace Algorithm.DataStructure
             return (currentIndex - 1) / 2;
         }
 
-        public List<T> Order()
+        protected override void MakeSort()
         {
-            var result = new List<T>();
-            while (Count > 0)
+            
+            for (int i = Count-1; i >= 0 ; i--)
             {
-                result.Add(GetMax());
+                Swop(0, i);
+                Sort(0, i);
             }
-            return result;
         }
     }
 }
