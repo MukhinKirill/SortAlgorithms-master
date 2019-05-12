@@ -44,6 +44,7 @@
             this.CoctailSortButton = new System.Windows.Forms.Button();
             this.InsertSortButton = new System.Windows.Forms.Button();
             this.ShellSortButton = new System.Windows.Forms.Button();
+            this.SelectionSortBtn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -197,11 +198,22 @@
             this.ShellSortButton.UseVisualStyleBackColor = true;
             this.ShellSortButton.Click += new System.EventHandler(this.ShellSortButton_Click);
             // 
+            // SelectionSortBtn
+            // 
+            this.SelectionSortBtn.Location = new System.Drawing.Point(339, 133);
+            this.SelectionSortBtn.Name = "SelectionSortBtn";
+            this.SelectionSortBtn.Size = new System.Drawing.Size(79, 23);
+            this.SelectionSortBtn.TabIndex = 12;
+            this.SelectionSortBtn.Text = "SelectionSort";
+            this.SelectionSortBtn.UseVisualStyleBackColor = true;
+            this.SelectionSortBtn.Click += new System.EventHandler(this.SelectionSortBtn_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.SelectionSortBtn);
             this.Controls.Add(this.ShellSortButton);
             this.Controls.Add(this.InsertSortButton);
             this.Controls.Add(this.CoctailSortButton);
@@ -241,6 +253,7 @@
         private System.Windows.Forms.Button CoctailSortButton;
         private System.Windows.Forms.Button InsertSortButton;
         private System.Windows.Forms.Button ShellSortButton;
+        private System.Windows.Forms.Button SelectionSortBtn;
     }
 }
 

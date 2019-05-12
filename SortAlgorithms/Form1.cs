@@ -117,7 +117,7 @@ namespace SortAlgorithms
             e.Item2.SetColor(Color.Green);
             panel3.Refresh();
 
-            Thread.Sleep(50);
+            Thread.Sleep(100);
             e.Item1.SetColor(Color.Blue);
             e.Item2.SetColor(Color.Blue);
             panel3.Refresh();
@@ -149,6 +149,13 @@ namespace SortAlgorithms
             RefreshItems();
             var shell = new ShellSort<SortedItem>(items);
             BtnClick(shell);
+        }
+
+        private void SelectionSortBtn_Click(object sender, EventArgs e)
+        {
+            RefreshItems();
+            var selection = new SelectionSort<SortedItem>(items);
+            BtnClick(selection);
         }
     }
 }
