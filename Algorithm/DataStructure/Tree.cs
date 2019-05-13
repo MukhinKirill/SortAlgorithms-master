@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Algorithm.DataStructure
 {
-    class Tree<T>
+    public class Tree<T> :AlgorithmBase<T>
           where T : IComparable
     {
         public Node<T> Root { get; private set; }
@@ -17,116 +17,143 @@ namespace Algorithm.DataStructure
         }
         public Tree(IEnumerable<T> items)
         {
-            foreach (var item in items)
+            var list = items.ToList();
+            for (int i = 0; i < items.Count(); i++)
             {
-                Add(item);
+                var item = list[i];
+                Items.Add(item);
+                var node = new Node<T>(item, i);
+                Add(node);
             }
         }
-        public void Add(T data)
+        private void Add(Node<T> node)
         {
             if (Root == null)
             {
-                Root = new Node<T>(data);
+                Root = node;
                 Count = 1;
                 return;
             }
 
-            Root.Add(data);
+            Add(Root, node);
             Count++;
         }
-
-        public List<T> Preorder()
+        private void Add(Node<T> node,Node<T> newNode)
         {
-            if (Root == null)
+            if (Compare(node.Data, newNode.Data) == 1)
             {
-                return new List<T>();
-            }
+                if (node.Left == null)
+                {
 
-            return Preorder(Root);
+                    node.Left = newNode;
+                }
+                else
+                {
+                    Add(node.Left, newNode);
+                }
+            }
+            else
+            {
+                if (node.Right == null)
+                {
+                    node.Right = newNode;
+                }
+                else
+                {
+                    Add(node.Right, newNode);
+                }
+            }
+        }
+        //public List<T> Preorder()
+        //{
+        //    if (Root == null)
+        //    {
+        //        return new List<T>();
+        //    }
+
+        //    return Preorder(Root);
+        //}
+
+        //public List<T> Postorder()
+        //{
+        //    if (Root == null)
+        //    {
+        //        return new List<T>();
+        //    }
+
+        //    return Postorder(Root);
+        //}
+
+        protected override void MakeSort()
+        {
+            //var dict = new Dictionary
+            var result = InOrder(Root);
+            Items.AddRange(result.Select(i=>i.Data));// это костыль прям костыль
+            for (int i = 0; i < result.Count(); i++)
+            {
+                    Swop(i, result.Count + i);
+            }
+            Items.RemoveRange(result.Count, result.Count);
         }
 
-        public List<T> Postorder()
+        //private List<T> Preorder(Node<T> node)
+        //{
+        //    var list = new List<T>();
+        //    if (node != null)
+        //    {
+        //        list.Add(node.Data);
+
+        //        if (node.Left != null)
+        //        {
+        //            list.AddRange(Preorder(node.Left));
+        //        }
+
+        //        if (node.Right != null)
+        //        {
+        //            list.AddRange(Preorder(node.Right));
+        //        }
+        //    }
+
+        //    return list;
+        //}
+
+        //private List<T> Postorder(Node<T> node)
+        //{
+        //    var list = new List<T>();
+        //    if (node != null)
+        //    {
+        //        if (node.Left != null)
+        //        {
+        //            list.AddRange(Postorder(node.Left));
+        //        }
+
+        //        if (node.Right != null)
+        //        {
+        //            list.AddRange(Postorder(node.Right));
+        //        }
+
+        //        list.Add(node.Data);
+        //    }
+
+        //    return list;
+        //}
+
+        private List<Node<T>> InOrder(Node<T> node)
         {
-            if (Root == null)
-            {
-                return new List<T>();
-            }
-
-            return Postorder(Root);
-        }
-
-        public List<T> Inorder()
-        {
-            if (Root == null)
-            {
-                return new List<T>();
-            }
-
-            return Inorder(Root);
-        }
-
-        private List<T> Preorder(Node<T> node)
-        {
-            var list = new List<T>();
+            var list = new List<Node<T>>();
             if (node != null)
             {
-                list.Add(node.Data);
-
                 if (node.Left != null)
                 {
-                    list.AddRange(Preorder(node.Left));
+                    list.AddRange(InOrder(node.Left));
                 }
-
+                list.Add(node);
                 if (node.Right != null)
                 {
-                    list.AddRange(Preorder(node.Right));
+                    list.AddRange(InOrder(node.Right));
                 }
-            }
-
-            return list;
-        }
-
-        private List<T> Postorder(Node<T> node)
-        {
-            var list = new List<T>();
-            if (node != null)
-            {
-                if (node.Left != null)
-                {
-                    list.AddRange(Postorder(node.Left));
-                }
-
-                if (node.Right != null)
-                {
-                    list.AddRange(Postorder(node.Right));
-                }
-
-                list.Add(node.Data);
-            }
-
-            return list;
-        }
-
-        private List<T> Inorder(Node<T> node)
-        {
-            var list = new List<T>();
-            if (node != null)
-            {
-                if (node.Left != null)
-                {
-                    list.AddRange(Inorder(node.Left));
-                }
-
-                list.Add(node.Data);
-
-                if (node.Right != null)
-                {
-                    list.AddRange(Inorder(node.Right));
-                }
-
 
             }
-
             return list;
         }
     }

@@ -19,7 +19,7 @@ namespace Algorithm.Tests
         public void Init()
         {
             items.Clear();
-            for (int i = 0; i < 1000; i++)
+            for (int i = 0; i < 5; i++)
             {
                 items.Add(rnd.Next(0, 100));
             }
@@ -106,8 +106,7 @@ namespace Algorithm.Tests
         public void TreeTest()
         {
             // arrange
-            var tree = new TreeSort<int>();
-            tree.Items.AddRange(items);
+            var tree = new Tree<int>(items);
             // act
             tree.Sort();
 
