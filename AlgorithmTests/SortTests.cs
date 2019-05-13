@@ -26,6 +26,7 @@ namespace Algorithm.Tests
             sorted.Clear();
             sorted.AddRange(items.OrderBy(x => x).ToArray());
         }
+        #region Sorts
         [TestMethod()]//это тестовый метод и отображается в обозревателе тестов
         public void BubbleTest()
         {
@@ -145,5 +146,21 @@ namespace Algorithm.Tests
                 Assert.AreEqual(sorted[i], selection.Items[i]);
             }
         }
+        [TestMethod()]
+        public void GnomeTest()
+        {
+            // arrange
+            var gnome = new GnomeSort<int>();
+            gnome.Items.AddRange(items);
+            // act
+            gnome.Sort();
+
+            // assert
+            for (int i = 0; i < items.Count; i++)
+            {
+                Assert.AreEqual(sorted[i], gnome.Items[i]);
+            }
+        }
+        #endregion
     }
 }
