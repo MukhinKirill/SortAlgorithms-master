@@ -88,12 +88,41 @@ namespace Algorithm.DataStructure
         {
             //var dict = new Dictionary
             var result = InOrder(Root);
-            Items.AddRange(result.Select(i=>i.Data));// это костыль прям костыль
+            var buffer = new Dictionary<int, int>();
+            /*Items.AddRange(result.Select(i=>i.Data));// это костыль прям костыль
             for (int i = 0; i < result.Count(); i++)
             {
                     Swop(i, result.Count + i);
             }
-            Items.RemoveRange(result.Count, result.Count);
+            Items.RemoveRange(result.Count, result.Count);*/
+            for (int i = 0; i < result.Count(); i++)
+            {
+                if(buffer.ContainsKey(result[i].Index))
+                {
+                    int tmp = buffer[result[i].Index];
+                    BufSwap(result, buffer, i, tmp);
+                }
+                else
+                {
+                    Swop(i, result[i].Index);
+                    buffer.Add(i, result[i].Index);
+                }
+            }
+        }
+
+        private void BufSwap(List<Node<T>> result, Dictionary<int, int> buffer, int i, int tmp)
+        {
+            if (!buffer.ContainsKey(tmp))
+            {
+                buffer[result[i].Index] = result[i].Index;
+                Swop(i, tmp);
+                buffer.Add(i, tmp);
+            }
+            else
+            {
+                tmp = buffer[tmp];
+                BufSwap(result, buffer, i, tmp);
+            }
         }
 
         //private List<T> Preorder(Node<T> node)
