@@ -4,13 +4,13 @@ using System.Linq;
 
 namespace Algorithm
 {
-    public class RedixSort<T> : AlgorithmBase<T> where T : IComparable
+    public class LSDRedixSort<T> : AlgorithmBase<T> where T : IComparable
     {
-        public RedixSort()
+        public LSDRedixSort()
         {
 
         }
-        public RedixSort(IEnumerable<T> items) : base(items)
+        public LSDRedixSort(IEnumerable<T> items) : base(items)
         {
 
         }

@@ -161,18 +161,48 @@ namespace Algorithm.Tests
             }
         }
         [TestMethod()]
-        public void RedixTest()
+        public void LSDRedixTest()
         {
             // arrange
-            var redix = new RedixSort<int>();
-            redix.Items.AddRange(items);
+            var LSDredix = new LSDRedixSort<int>();
+            LSDredix.Items.AddRange(items);
             // act
-            redix.Sort();
+            LSDredix.Sort();
 
             // assert
             for (int i = 0; i < items.Count; i++)
             {
-                Assert.AreEqual(sorted[i], redix.Items[i]);
+                Assert.AreEqual(sorted[i], LSDredix.Items[i]);
+            }
+        }
+        [TestMethod()]
+        public void MSDRedixTest()
+        {
+            // arrange
+            var MSDredix = new MSDRedixSort<int>();
+            MSDredix.Items.AddRange(items);
+            // act
+            MSDredix.Sort();
+
+            // assert
+            for (int i = 0; i < items.Count; i++)
+            {
+                Assert.AreEqual(sorted[i], MSDredix.Items[i]);
+            }
+        }
+        [TestMethod()]
+        public void MergeTest()
+        {
+            // arrange
+            var merge = new MergeSort<int>();
+            merge.Items.AddRange(items);
+            // act
+            merge.Sort();
+
+            // assert
+            for (int i = 0; i < items.Count; i++)
+            {
+                Assert.AreEqual(sorted[i], merge.Items[i]);
             }
         }
         #endregion
