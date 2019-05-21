@@ -64,37 +64,18 @@ namespace Algorithm.DataStructure
                 }
             }
         }
-        //public List<T> Preorder()
-        //{
-        //    if (Root == null)
-        //    {
-        //        return new List<T>();
-        //    }
-
-        //    return Preorder(Root);
-        //}
-
-        //public List<T> Postorder()
-        //{
-        //    if (Root == null)
-        //    {
-        //        return new List<T>();
-        //    }
-
-        //    return Postorder(Root);
-        //}
 
         protected override void MakeSort()
         {
             //var dict = new Dictionary
-            var result = InOrder(Root);
-            var buffer = new Dictionary<int, int>();
-            /*Items.AddRange(result.Select(i=>i.Data));// это костыль прям костыль
-            for (int i = 0; i < result.Count(); i++)
+            var result = InOrder(Root).Select(r=>r.Data).ToList();
+            for (int i = 0; i < result.Count; i++)
             {
-                    Swop(i, result.Count + i);
+                Set(i, result[i]);
             }
-            Items.RemoveRange(result.Count, result.Count);*/
+            //мой вариант сортировки
+            /*var result = InOrder(Root);
+            var buffer = new Dictionary<int, int>();
             for (int i = 0; i < result.Count(); i++)
             {
                 if(buffer.ContainsKey(result[i].Index))
@@ -107,7 +88,7 @@ namespace Algorithm.DataStructure
                     Swop(i, result[i].Index);
                     buffer.Add(i, result[i].Index);
                 }
-            }
+            }*/
         }
 
         private void BufSwap(List<Node<T>> result, Dictionary<int, int> buffer, int i, int tmp)
