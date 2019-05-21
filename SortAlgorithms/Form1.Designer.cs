@@ -49,6 +49,8 @@
             this.GnomeSortBtn = new System.Windows.Forms.Button();
             this.TreeSortBtn = new System.Windows.Forms.Button();
             this.MSDredixSortBtn = new System.Windows.Forms.Button();
+            this.LSDredixSortBtn = new System.Windows.Forms.Button();
+            this.MergeSortBtn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -252,11 +254,33 @@
             this.MSDredixSortBtn.UseVisualStyleBackColor = true;
             this.MSDredixSortBtn.Click += new System.EventHandler(this.MSDredixSortBtn_Click);
             // 
+            // LSDredixSortBtn
+            // 
+            this.LSDredixSortBtn.Location = new System.Drawing.Point(670, 164);
+            this.LSDredixSortBtn.Name = "LSDredixSortBtn";
+            this.LSDredixSortBtn.Size = new System.Drawing.Size(88, 23);
+            this.LSDredixSortBtn.TabIndex = 17;
+            this.LSDredixSortBtn.Text = "LSDredixSort";
+            this.LSDredixSortBtn.UseVisualStyleBackColor = true;
+            this.LSDredixSortBtn.Click += new System.EventHandler(this.LSDredixSortBtn_Click);
+            // 
+            // MergeSortBtn
+            // 
+            this.MergeSortBtn.Location = new System.Drawing.Point(589, 164);
+            this.MergeSortBtn.Name = "MergeSortBtn";
+            this.MergeSortBtn.Size = new System.Drawing.Size(75, 23);
+            this.MergeSortBtn.TabIndex = 18;
+            this.MergeSortBtn.Text = "MergeSort";
+            this.MergeSortBtn.UseVisualStyleBackColor = true;
+            this.MergeSortBtn.Click += new System.EventHandler(this.MergeSortBtn_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.MergeSortBtn);
+            this.Controls.Add(this.LSDredixSortBtn);
             this.Controls.Add(this.MSDredixSortBtn);
             this.Controls.Add(this.TreeSortBtn);
             this.Controls.Add(this.GnomeSortBtn);
@@ -306,6 +330,8 @@
         private System.Windows.Forms.Button GnomeSortBtn;
         private System.Windows.Forms.Button TreeSortBtn;
         private System.Windows.Forms.Button MSDredixSortBtn;
+        private System.Windows.Forms.Button LSDredixSortBtn;
+        private System.Windows.Forms.Button MergeSortBtn;
     }
 }
 
