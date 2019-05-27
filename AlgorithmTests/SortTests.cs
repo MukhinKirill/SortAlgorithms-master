@@ -19,7 +19,7 @@ namespace Algorithm.Tests
         public void Init()
         {
             items.Clear();
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i < 10000; i++)
             {
                 items.Add(rnd.Next(0, 100));
             }
@@ -203,6 +203,21 @@ namespace Algorithm.Tests
             for (int i = 0; i < items.Count; i++)
             {
                 Assert.AreEqual(sorted[i], merge.Items[i]);
+            }
+        }
+        [TestMethod()]
+        public void QuickTest()
+        {
+            // arrange
+            var quick = new QuickSort<int>();
+            quick.Items.AddRange(items);
+            // act
+            quick.Sort();
+
+            // assert
+            for (int i = 0; i < items.Count; i++)
+            {
+                Assert.AreEqual(sorted[i], quick.Items[i]);
             }
         }
         #endregion

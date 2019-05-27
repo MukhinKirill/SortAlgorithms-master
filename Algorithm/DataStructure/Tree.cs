@@ -67,14 +67,13 @@ namespace Algorithm.DataStructure
 
         protected override void MakeSort()
         {
-            //var dict = new Dictionary
-            var result = InOrder(Root).Select(r=>r.Data).ToList();
+            /*var result = InOrder(Root).Select(r=>r.Data).ToList();
             for (int i = 0; i < result.Count; i++)
             {
                 Set(i, result[i]);
-            }
+            }*/
             //мой вариант сортировки
-            /*var result = InOrder(Root);
+            var result = InOrder(Root);
             var buffer = new Dictionary<int, int>();
             for (int i = 0; i < result.Count(); i++)
             {
@@ -88,7 +87,7 @@ namespace Algorithm.DataStructure
                     Swop(i, result[i].Index);
                     buffer.Add(i, result[i].Index);
                 }
-            }*/
+            }
         }
 
         private void BufSwap(List<Node<T>> result, Dictionary<int, int> buffer, int i, int tmp)
